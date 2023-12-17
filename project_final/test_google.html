@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Game</title>
+  <!-- Include Google Sign-In Script -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="952603913534-bmhanneabl59bfn9mlgeorn44k5d7aa1.apps.googleusercontent.com">
+</head>
+<body>
+
+<!-- Your Game Content Goes Here -->
+
+<!-- Google Sign-In Button -->
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<!-- JavaScript to Handle Sign-In -->
+<script>
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+
+    // Access user information
+    var username = profile.getName();
+    var health = 100; // Set initial health
+    var attack = 10; // Set initial attack
+    var defend = 5;  // Set initial defend
+    var agility = 8; // Set initial agility
+
+    // Store player stats or perform other actions
+    // For simplicity, we'll just log the information to the console
+    console.log("Username: " + username);
+    console.log("Health: " + health);
+    console.log("Attack: " + attack);
+    console.log("Defend: " + defend);
+    console.log("Agility: " + agility);
+
+    // You can also sign the user out if needed
+    // var auth2 = gapi.auth2.getAuthInstance();
+    // auth2.signOut().then(function () {
+    //   console.log('User signed out.');
+    // });
+  }
+</script>
+
+</body>
+</html>

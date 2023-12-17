@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game with Baseline Stats</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .damage-animation {
+      animation: damageAnimation 1s ease-out;
+    }
+    @keyframes damageAnimation {
+      0% {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    #battleLog {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Character Stats</h1>
+
+<div id="userStats">
+  <h2>User Stats</h2>
+  <p><strong>HP:</strong> <span id="userHp">100</span></p>
+  <p><strong>Attack:</strong> <span id="userAttack">10</span></p>
+  <p><strong>Defense:</strong> <span id="userDefense">5</span></p>
+  <p><strong>Agility:</strong> <span id="userAgility">8</span></p>
+  <p><strong>Dice Multiplier:</strong> <span id="diceMultiplier">1</span></p>
+  <button onclick="rollDice()">Roll Dice</button>
+</div>
+
+<div id="bossStats">
+  <h2>Boss Stats</h2>
+  <p><strong>HP:</strong> <span id="bossHp">100</span></p>
+  <p><strong>Attack:</strong> <span id="bossAttack">12</span></p>
+  <p><strong>Defense:</strong> <span id="bossDefense">8</span></p>
+  <p><strong>Agility:</strong> <span id="bossAgility">6</span></p>
+  <p><strong>Dice Roll:</strong> <span id="bossDiceRoll">-</span></p>
+</div>
+
+<div id="battleLog"></div>
+
+<script>
+  // User stats
+  var userHp = 1000;
+  var userAttack = 10;
+  var userDefense = 5;
+  var userAgility = 8;
+  var diceMultiplier = 1;
+
+  // Boss stats
+  var bossHp = 1000;
+  var bossAttack = 12;
+  var bossDefense = 8;
+  var bossAgility = 6;
+  var bossDiceRoll = 0;
+
+  // Display initial stats
+  updateStats();
+
+  function updateStats() {
+    document.getElementById('userHp').innerText = userHp;
+    document.getElementById('userAttack').innerText = userAttack;
+    document.getElementById('userDefense').innerText = userDefense;
+    document.getElementById('userAgility').innerText = userAgility;
+    document.getElementById('diceMultiplier').innerText = diceMultiplier;
+
+    document.getElementById('bossHp').innerText = bossHp;
+    document.getElementById('bossAttack').innerText = bossAttack;
+    document.getElementById('bossDefense').innerText = bossDefense;
+    document.getElementById('bossAgility').innerText = bossAgility;
+    document.getElementById('bossDiceRoll').innerText = bossDiceRoll === 0 ? '-' : bossDiceRoll;
+  }
+
+  function rollDice() {
+    // Roll a 20-sided dice and update the multiplier
+    diceMultiplier = Math.floor(Math.random() * 20) + 1;
+    // Update stats
+    updateStats();
+    // Inflict damage to the boss
+    var damageToBoss = (userAttack * diceMultiplier) - bossDefense;
+    bossHp -= damageToBoss > 0 ? damageToBoss : 0;
+    // Check if the boss is defeated
+    if (bossHp <= 0) {
+      alert("Congratulations! You defeated the boss!");
+      resetGame();
+    } else {
+      // Display damage animation
+      displayDamageAnimation('bossHp', damageToBoss);
+      // Boss retaliates
+      bossDiceRoll = Math.floor(Math.random() * 20) + 1;
+      var damageToUser = (bossAttack * bossDiceRoll) - userDefense;
+      userHp -= damageToUser > 0 ? damageToUser : 0;
+      // Check if the user is defeated
+      if (userHp <= 0) {
+        alert("Game Over! The boss defeated you.");
+        resetGame();
+      } else {
+        // Display damage animation
+        displayDamageAnimation('userHp', damageToUser);
+        // Update stats after the battle
+        updateStats();
+        // Update battle log
+        updateBattleLog('User inflicted ' + damageToBoss + ' damage to the boss');
+        updateBattleLog('Boss inflicted ' + damageToUser + ' damage to the user');
+      }
+    }
+  }
+
+  function displayDamageAnimation(targetId, damage) {
+    var targetElement = document.getElementById(targetId);
+    var damageSpan = document.createElement('span');
+    damageSpan.classList.add('damage-animation');
+    damageSpan.textContent = `-${damage}`;
+    targetElement.appendChild(damageSpan);
+    setTimeout(() => {
+      damageSpan.remove();
+    }, 1000);
+  }
+
+  function updateBattleLog(message) {
+    var battleLogElement = document.getElementById('battleLog');
+    var logItem = document.createElement('div');
+    logItem.textContent = message;
+    battleLogElement.appendChild(logItem);
+    battleLogElement.scrollTop = battleLogElement.scrollHeight; // Auto-scroll to the bottom
+  }
+
+  function resetGame() {
+    // Reset all stats for a new game
+    userHp = 1000;
+    bossHp = 1000;
+    diceMultiplier = 1;
+    bossDiceRoll = 0;
+    updateStats();
+    clearBattleLog();
+  }
+
+  function clearBattleLog() {
+    document.getElementById('battleLog').innerHTML = '';
+  }
+</script>
+
+</body>
+</html>
