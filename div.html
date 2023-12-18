@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+    font-family: 'Press Start 2P';font-size: 22px;
+    background-color: black;
+    color: white;
+}
+        /* Add your CSS styles here */
+        .title {
+            border: 2px solid white; /* You can customize the border color and thickness */
+            /* Adjust padding as needed */
+            display: flex;
+            height: 170px;
+        }
+        
+        .body {
+            border: 2px solid white; /* You can customize the border color and thickness */
+            padding: 2px; /* Adjust padding as needed */
+            height: 550px;
+            overflow: hidden;
+
+        }
+        .body_background{
+            background: url('picture1.png')repeat-x;
+            height: 550px;
+            width: 7560px;
+            animation: slide 60s linear infinite;
+
+
+        }
+        .panel {
+            border: 2px solid white; /*Panel buat si stats di bawah */
+            height: 230px;
+        }
+        .title_conten{
+            border: 2px solid white; 
+           height: 170px;
+           width: 45vw;
+        }
+        .clock{
+            height: 170px;
+           width: 30vw;
+           border: 2px solid white; 
+
+
+        }
+        .coin{
+            height: 150px;
+            width: 450px;
+           border: 2px solid cyan; 
+
+        }
+        .main_frame{
+            border: cyan;
+            height:190px;
+            padding:15px;
+            display: flex;
+        }
+        .main_char{
+            border:white;
+            height: 170px;
+            width: 45vw;
+            padding: 5px;
+            display: flex;
+        
+        }
+        .dice_div{
+            border: 2px cyan solid;
+            height: 160px;
+            width: 40vw;
+            display: flex;
+        }
+        #dice {
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    #dice img {
+      width: 100%;
+      height: 100%;
+      
+      transition: transform 1.5s ease-in-out;
+    }
+
+    #rollButton {
+     
+      padding: 10px;
+      font-size: 16px;
+      
+    }
+
+  
+        .Status{
+            border:2px cyan solid ;
+            height: 160px;
+            width: 25vw;
+
+        }
+        h1::first-letter {
+    font-size: 1.2em; /* Adjust the size as needed */
+    font-weight: bold; /* Optional: You can make the first letter bold or add other styles */
+}
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1920px, 0, 0); /* The image width */
+  }
+}
+      
+
+    </style>
+    <script>
+         let Dice_value = 1;
+
+function rollDice() {
+  const diceElement = document.getElementById('diceImage');
+  const valueElement = document.getElementById('diceValue');
+  const numberOfImages = 30;
+  const rollDuration = 1500; // in milliseconds
+  let currentImage = 1;
+  let interval;
+
+  // Disable button during the animation
+  document.getElementById('rollButton').disabled = true;
+
+  // Roll animation
+  interval = setInterval(() => {
+    const randomNumber = Math.floor(Math.random() * 20) + 1;
+    const imagePath = `${randomNumber}.png`;
+    diceElement.src = imagePath;
+    Dice_value = randomNumber;
+
+    // On the last image, update the value and clear the interval
+    if (currentImage === numberOfImages) {
+      valueElement.textContent = `Dice Value: ${Dice_value}`;
+      document.getElementById('rollButton').disabled = false;
+      clearInterval(interval);
+    }
+
+    currentImage++;
+  }, rollDuration / numberOfImages);
+}
+        // Function to format seconds into HH:MM:SS
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const remainingSeconds = seconds % 60;
+            return `${hours}:${minutes}:${remainingSeconds}`;
+        }
+
+        // Function to update the timer every second
+        function updateTimer() {
+            seconds++;
+            document.getElementById('timer').innerText = formatTime(seconds) + ' elapsed';
+        }
+
+        // Initialize seconds
+        let seconds = 0;
+
+        // Update the timer every second
+        setInterval(updateTimer, 1000);
+    </script>
+</head>
+<body>
+    <div class="title">
+        
+        <div class="clock">
+        
+            <p style="text-align: center; object-fit: fill; width: max-content; font-size: smaller;">Time spent on the website:</p>
+            <div id="timer" style="text-align: center;">0 seconds</div>
+        </div>
+        <div class="title_conten">
+        
+            <h1>Unproductive</h1>
+            <h1>Clockwork Pixel</h1>
+        </div>
+        <div class="coin">
+            <div >
+            <div style="height: 60px; border: #c00909   solid;">
+                <p style="text-align: center;">NonsenCents: </p>
+            </div>
+
+            <div style="height: 80px; border: #c00909   solid; display: flex; justify-content: center; ">
+                <p style="border: 5 px cyan solid;">gambar</p>
+                <p>x2</p>  
+
+               
+
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    <div class="body">
+        <div class = "body_background"></div>
+    </div>
+    aergaerga
+    <div class="panel">
+        <div class="main_frame">
+            <div class="main_char">
+                <div style="height: 160px; width: 200px;border: #c00909 solid;">
+                
+                    gamba profile hero
+
+                </div>
+                <div class="Status">
+                    status
+                </div>
+                
+            </div>
+            <div class="dice_div">
+                <div id="dice">
+                    <img id="diceImage" src="1.png" alt="Dice">
+                  </div>
+              <div>
+                <div>
+                    <h5 id="diceValue">Dice Value: 1</h5>
+                </div>
+                <div style="  border: #c00909 2px solid; display: flex; align-items: center;
+justify-content: center;" >
+                    <button id="rollButton" onclick="rollDice()">Roll Random</button>
+                </div>
+
+              </div>
+
+             
+            </div>
+            <div class="main_char">
+                <div style="height: 160px; width: 200px;border: #c00909 solid;">
+                
+                    gamba profile hero
+
+                </div>
+                <div class="Status">
+                    status
+                </div>
+                
+            </div>
+        </div>
+        
+       
+    </div>
+
+</body>
+</html>
