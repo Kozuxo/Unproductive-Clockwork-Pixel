@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- slick link bellow-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!---->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+
+.modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+        }
+
+        /* Styling for the modal content */
+        .modal-content {
+            background-color: #a11313be;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            height: 600px;
+            width: 950px;
+            z-index: 3;
+        }
+
+        /* Styling to close the modal */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+.slick-prev:before {
+    font-family: 'Press Start 2P';
+
+  content: "<<    ";
+  color: black;
+  font-size: 40px;
+
+}
+button.slick-prev.slick-arrow {
+    left: -75px;
+}
+.slick-next:before {
+    font-family: 'Press Start 2P';
+  content: ">>";
+  color: black;
+  font-size: 40px;
+}
+        .slick-slider {
+            margin: 0 auto;
+            width: 70%;
+            padding: 20px;
+
+        }
+
+        .slider {
+            z-index: 1;
+            position: absolute;
+          
+        }
+
+        .slidercontainer {
+            height: 400px;
+            width: 100%;
+            z-index: 2;
+           
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+
+
+        }
+
+        .slick-slide {
+            transform: scale(0.8);
+            color: #0c0000;
+            transition: all 0, 4s ease-in-out;
+            padding: 40px 0;
+
+        }
+
+        .slick-slide img {
+            max-width: 100%;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .slick-center {
+            transform: scale(1.05);
+
+        }
+
+        .slick-slider>div {
+            padding: 5px;
+        }
+
+        body {
+            font-family: 'Press Start 2P';
+            font-size: 22px;
+            background-color: black;
+            color: white;
+            position: relative;
+        }
+
+        /* Add your CSS styles here */
+        .title {
+            border: 2px solid white;
+            /* You can customize the border color and thickness */
+            /* Adjust padding as needed */
+            display: flex;
+            height: 170px;
+        }
+
+        .body {
+            border: 2px solid white;
+            /* You can customize the border color and thickness */
+            padding: 2px;
+            /* Adjust padding as needed */
+            height: 550px;
+            overflow: hidden;
+
+        }
+
+        .body_background {
+            background: url('picture1.png')repeat-x;
+            height: 550px;
+            width: 7560px;
+            animation: slide 60s linear infinite;
+            position: relative;
+            z-index: 1;
+
+
+
+        }
+
+        .panel {
+            border: 2px solid white;
+            /*Panel buat si stats di bawah */
+            height: 230px;
+        }
+
+        .title_conten {
+            border: 2px solid white;
+            height: 170px;
+            width: 45vw;
+        }
+
+        .clock {
+            height: 170px;
+            width: 30vw;
+            border: 2px solid white;
+
+
+        }
+
+        .coin {
+            height: 150px;
+            width: 450px;
+            border: 2px solid cyan;
+
+        }
+
+        .main_frame {
+            border: cyan;
+            height: 190px;
+            padding: 15px;
+            display: flex;
+        }
+
+        .main_char {
+            border: white;
+            height: 170px;
+            width: 45vw;
+            padding: 5px;
+            display: flex;
+
+        }
+
+        .dice_div {
+            border: 2px cyan solid;
+            height: 160px;
+            width: 40vw;
+            display: flex;
+        }
+
+        .games {
+            height: 20px;
+            width: 300px;
+        }
+
+        #dice {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        #dice img {
+            width: 100%;
+            height: 100%;
+
+            transition: transform 1.5s ease-in-out;
+        }
+
+        #rollButton {
+
+            padding: 10px;
+            font-size: 16px;
+
+        }
+
+
+        .Status {
+            border: 2px cyan solid;
+            height: 160px;
+            width: 25vw;
+
+        }
+
+        h1::first-letter {
+            font-size: 1.2em;
+            /* Adjust the size as needed */
+            font-weight: bold;
+            /* Optional: You can make the first letter bold or add other styles */
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(-1920px, 0, 0);
+                /* The image width */
+            }
+        }
+    </style>
+    <script>
+        let Dice_value = 1;
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        // Function to close a specific modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close the modal if the overlay is clicked
+        window.onclick = function (event) {
+            if (event.target.className === 'modal-overlay') {
+                event.target.style.display = 'none';
+            }
+        };
+
+        function rollDice() {
+            const diceElement = document.getElementById('diceImage');
+            const valueElement = document.getElementById('diceValue');
+            const numberOfImages = 30;
+            const rollDuration = 1500; // in milliseconds
+            let currentImage = 1;
+            let interval;
+
+            // Disable button during the animation
+            document.getElementById('rollButton').disabled = true;
+
+            // Roll animation
+            interval = setInterval(() => {
+                const randomNumber = Math.floor(Math.random() * 20) + 1;
+                const imagePath = `${randomNumber}.png`;
+                diceElement.src = imagePath;
+                Dice_value = randomNumber;
+
+                // On the last image, update the value and clear the interval
+                if (currentImage === numberOfImages) {
+                    valueElement.textContent = `Dice Value: ${Dice_value}`;
+                    document.getElementById('rollButton').disabled = false;
+                    clearInterval(interval);
+                }
+
+                currentImage++;
+            }, rollDuration / numberOfImages);
+        }
+        // Function to format seconds into HH:MM:SS
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const remainingSeconds = seconds % 60;
+            return `${hours}:${minutes}:${remainingSeconds}`;
+        }
+
+        // Function to update the timer every second
+        function updateTimer() {
+            seconds++;
+            document.getElementById('timer').innerText = formatTime(seconds) + ' elapsed';
+        }
+
+        // Initialize seconds
+        let seconds = 0;
+
+        // Update the timer every second
+        setInterval(updateTimer, 1000);
+
+        //slicker
+        $(document).ready(function () {
+            $(".slider").slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                speed: 500,
+                infinite: true,
+                centerMode: true,
+                centerPadding: "0",
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="modal-overlay" id="game1">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('game1')">&times;</span>
+            <img src="1.png" alt="Image 1">
+            <p>Modal content for Image 1.</p>
+        </div>
+    </div>
+    <div class="title">
+
+        <div class="clock">
+
+            <p style="text-align: center; object-fit: fill; width: max-content; font-size: smaller;">Time spent on the
+                website:</p>
+            <div id="timer" style="text-align: center;">0 seconds</div>
+        </div>
+        <div class="title_conten">
+
+            <h1>Unproductive</h1>
+            <h1>Clockwork Pixel</h1>
+        </div>
+        <div class="coin">
+            <div>
+                <div style="height: 60px; border: #c00909   solid;">
+                    <p style="text-align: center;">NonsenCents: </p>
+                </div>
+
+                <div style="height: 80px; border: #c00909   solid; display: flex; justify-content: center; ">
+                    <p style="border: 5 px cyan solid;">gambar</p>
+                    <p>x2</p>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="body">
+        <div class=" slidercontainer" >
+            <div class="slider">
+                <div class="item">
+                    <img src="./Game/2.png" id="game1" onclick="openModal('game1')">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+            </div>
+        </div>
+        <div class="body_background"></div>
+
+
+    </div>
+    <div class="panel">
+        <div class="main_frame">
+            <div class="main_char">
+                <div style="height: 160px; width: 200px;border: #c00909 solid;">
+
+                    gamba profile hero
+
+                </div>
+                <div class="Status">
+                    status
+                </div>
+
+            </div>
+            <div class="dice_div">
+                <div id="dice">
+                    <img id="diceImage" src="1.png" alt="Dice">
+                </div>
+                <div>
+                    <div>
+                        <h5 id="diceValue">Dice Value: 1</h5>
+                    </div>
+                    <div style="  border: #c00909 2px solid; display: flex; align-items: center;
+justify-content: center;">
+                        <button id="rollButton" onclick="rollDice()">Roll Random</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="main_char">
+                <div style="height: 160px; width: 200px;border: #c00909 solid;">
+
+                    gamba profile hero
+
+                </div>
+                <div class="Status">
+                    status
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
