@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <!-- Firebase scripts (non-module versions) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
+
+  <!-- Your Firebase config and initialization -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiCHEzbfWANNoRFinVojyT8bLU3RukT7E",
+      authDomain: "unproductive-clockwork-pixel.firebaseapp.com",
+      databaseURL: "https://unproductive-clockwork-pixel-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "unproductive-clockwork-pixel",
+      storageBucket: "unproductive-clockwork-pixel.appspot.com",
+      messagingSenderId: "463047297753",
+      appId: "1:463047297753:web:ce01a3e27d83a141fb0cc8",
+      measurementId: "G-GC9VJVGVFW"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+  </script>
+
+  <style>
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      position: relative;
+      margin: 10% auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      max-width: 400px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>User Dashboard</h1>
+  <div id="user-info"></div>
+
+  <!-- Open Modal Button -->
+  <button onclick="openModal()">Open Modal</button>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal Content -->
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>This is the content of the modal.</p>
+      <!-- Replace the src attribute with the path to your own image -->
+      <img src="logo_landscape.jpg" alt="Your Image" style="width: 300px;">
+      <br>
+      <!-- Input fields for email and password -->
+      Email: <input type="text" id="emailInput"><br>
+      Password: <input type="password" id="passwordInput"><br>
+      <!-- Login button in the modal -->
+      <button onclick="loginFromModal()">Login</button>
+    </div>
+  </div>
+
+  <button onclick="createAccount()">Create New Account</button>
+  <!-- Original login button -->
+  <button onclick="openModal()">Login</button>
+  <button onclick="increment('hp')">Increment HP</button>
+  <button onclick="increment('attack')">Increment Attack</button>
+  <button onclick="increment('defend')">Increment Defend</button>
+  <button onclick="increment('agility')">Increment Agility</button>
+
+  <script>
+    // Existing JavaScript functions for Firebase and modal
+
+    function loginFromModal() {
+      const email = document.getElementById('emailInput').value;
+      const password = document.getElementById('passwordInput').value;
+
+      if (email && password) {
+        auth.signInWithEmailAndPassword(email, password)
+          .then(() => {
+            displayUserInfo(email);
+            closeModal(); // Close the modal after successful login
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      }
+    }
+
+    // Display user info function outside of waitForAuthReady
+    function displayUserInfo(username) {
+      const userRef = database.ref('users/' + username.replace('.', '_'));
+      userRef.once('value')
+        .then((snapshot) => {
+          const userData = snapshot.val();
+          console.log('Retrieved user data:', userData);
+
+          if (userData) {
+            const userInfo = document.getElementById('user-info');
+            userInfo.textContent = `Logged in as ${username}. Stats: HP(${userData.hp}), Attack(${userData.attack}), Defend(${userData.defend}), Agility(${userData.agility})`;
+          } else {
+            alert('User data not found');
+          }
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
+
+    // Other existing JavaScript functions
+
+    function openModal() {
+      document.getElementById('myModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
