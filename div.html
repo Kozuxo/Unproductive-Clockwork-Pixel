@@ -18,305 +18,305 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Page Title</title>
-    <style>
- .sprite_main {
-            width: 128px; /* Adjust the width and height based on your sprite size */
-            height: 128px;
-        
-            overflow: hidden;
-            bottom: 250px;
-        
-            z-index: 5;
-            position: absolute;
-            /* Adjust based on the number of frames in your sprite sheet */
-           
-        }
-        .main_characters{
-            animation: playSprite 1.2s steps(8)infinite;
-            
-        }
-
-        @keyframes playSprite {
-            from {
-                
-                transform: translate3d(0px,0,0) }
-            to { transform: translate3d(-100%,0,0)} /* Adjust based on the total width of your sprite sheet */
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none; /* Remove iframe border */
-            width: 600px;
-            height: 450px;
-            allowfullscreen: true;
-            webkitallowfullscreen:true;
-            mozallowfullscreen: true;
-            scrolling: no;
-        }
-.modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 3;
-        }
-
-        /* Styling for the modal content */
-        .modal-content {
-            background-color: #a11313be;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            height: 600px;
-            width: 950px;
-            z-index: 3;
-        }
-
-        /* Styling to close the modal */
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-
-.slick-prev:before {
-    font-family: 'Press Start 2P';
-
-  content: "<<    ";
-  color: black;
-  font-size: 40px;
-
-}
-button.slick-prev.slick-arrow {
-    left: -75px;
-}
-.slick-next:before {
-    font-family: 'Press Start 2P';
-  content: ">>";
-  color: black;
-  font-size: 40px;
-}
-        .slick-slider {
-            margin: 0 auto;
-            width: 70%;
-            padding: 20px;
-
-        }
-
-        .slider {
-            z-index: 1;
-            position: absolute;
-          
-        }
-
-        .slidercontainer {
-            height: 400px;
-            width: 100%;
-            z-index: 2;
-           
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-
-
-        }
-
-        .slick-slide {
-            transform: scale(0.8);
-            color: #0c0000;
-            transition: all 0, 4s ease-in-out;
-            padding: 40px 0;
-
-        }
-
-        .slick-slide img {
-            max-width: 100%;
-            transition: all 0.4s ease-in-out;
-        }
-
-        .slick-center {
-            transform: scale(1.05);
-
-        }
-
-        .slick-slider>div {
-            padding: 5px;
-        }
-
-        body {
-            font-family: 'Press Start 2P';
-            font-size: 22px;
-            background-color: black;
-            color: white;
-            position: relative;
-        }
-
-        /* Add your CSS styles here */
-        .title {
-            border: 2px solid white;
-            /* You can customize the border color and thickness */
-            /* Adjust padding as needed */
-            display: flex;
-            height: 170px;
-        }
-
-        .body {
-            border: 2px solid white;
-            /* You can customize the border color and thickness */
-            padding: 2px;
-            /* Adjust padding as needed */
-            height: 550px;
-            overflow: hidden;
-
-        }
-
-        .body_background {
-            background: url('picture1.png')repeat-x;
-            height: 550px;
-            width: 7560px;
-            animation: slide 60s linear infinite;
-            position: relative;
-            z-index: 1;
-
-
-
-        }
-
-        .panel {
-            border: 2px solid white;
-            /*Panel buat si stats di bawah */
-            height: 230px;
-        }
-
-        .title_conten {
-            border: 2px solid white;
-            height: 170px;
-            width: 45vw;
-        }
-
-        .clock {
-            height: 170px;
-            width: 30vw;
-            border: 2px solid white;
-            text-align: center;
-
-
-        }
-
-
-
-        .coin {
-            height: 150px;
-            width: 450px;
-            border: 2px solid cyan;
-            text-align: center;
-
-        }
-
-        .main_frame {
-            border: cyan;
-            height: 190px;
-            padding: 15px;
-            display: flex;
-        }
-
-        .main_char {
-            border: white;
-            height: 170px;
-            width: 45vw;
-            padding: 5px;
-            display: flex;
-
-        }
-
-        .dice_div {
-            border: 2px cyan solid;
-            height: 160px;
-            width: 40vw;
-            display: flex;
-        }
-
-        .games {
-            height: 20px;
-            width: 300px;
-        }
-
-        #dice {
-            width: 150px;
-            height: 150px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        #dice img {
-            width: 100%;
-            height: 100%;
-
-            transition: transform 1.5s ease-in-out;
-        }
-
-        #rollButton {
-
-            padding: 10px;
-            font-size: 16px;
-
-        }
-
-
-        .Status {
-            border: 2px cyan solid;
-            height: 160px;
-            width: 25vw;
-
-        }
-
-        h1::first-letter {
-            font-size: 1.2em;
-            /* Adjust the size as needed */
-            font-weight: bold;
-            /* Optional: You can make the first letter bold or add other styles */
-        }
-
-        @keyframes slide {
-            0% {
-                transform: translate3d(0, 0, 0);
-            }
-
-            100% {
-                transform: translate3d(-1920px, 0, 0);
-                /* The image width */
-            }
-        }
-
-        p {
-        font-size: 14px; /* You can adjust the size as needed */
-    }
-
-    strong {
-        font-size: 12px; /* You can adjust the size as needed */
-    }
-
-    span {
-        font-size: 12px; /* You can adjust the size as needed */
-    }
-    </style>
+   
 
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
 <script src="shared.js"></script>
-
+<style>
+  .sprite_main {
+             width: 128px; /* Adjust the width and height based on your sprite size */
+             height: 128px;
+         
+             overflow: hidden;
+             bottom: 250px;
+         
+             z-index: 5;
+             position: absolute;
+             /* Adjust based on the number of frames in your sprite sheet */
+            
+         }
+         .main_characters{
+             animation: playSprite 1.2s steps(8)infinite;
+             
+         }
+ 
+         @keyframes playSprite {
+             from {
+                 
+                 transform: translate3d(0px,0,0) }
+             to { transform: translate3d(-100%,0,0)} /* Adjust based on the total width of your sprite sheet */
+         }
+ 
+         iframe {
+             width: 100%;
+             height: 100%;
+             border: none; /* Remove iframe border */
+             width: 600px;
+             height: 450px;
+             allowfullscreen: true;
+             webkitallowfullscreen:true;
+             mozallowfullscreen: true;
+             scrolling: no;
+         }
+ .modal-overlay {
+             display: none;
+             position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             background: rgba(0, 0, 0, 0.7);
+             justify-content: center;
+             align-items: center;
+             z-index: 3;
+         }
+ 
+         /* Styling for the modal content */
+         .modal-content {
+             background-color: #a11313be;
+             padding: 20px;
+             border-radius: 5px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+             text-align: center;
+             height: 600px;
+             width: 950px;
+             z-index: 3;
+         }
+ 
+         /* Styling to close the modal */
+         .close {
+             position: absolute;
+             top: 10px;
+             right: 10px;
+             cursor: pointer;
+         }
+ 
+ .slick-prev:before {
+     font-family: 'Press Start 2P';
+ 
+   content: "<<    ";
+   color: black;
+   font-size: 40px;
+ 
+ }
+ button.slick-prev.slick-arrow {
+     left: -75px;
+ }
+ .slick-next:before {
+     font-family: 'Press Start 2P';
+   content: ">>";
+   color: black;
+   font-size: 40px;
+ }
+         .slick-slider {
+             margin: 0 auto;
+             width: 70%;
+             padding: 20px;
+ 
+         }
+ 
+         .slider {
+             z-index: 1;
+             position: absolute;
+           
+         }
+ 
+         .slidercontainer {
+             height: 400px;
+             width: 100%;
+             z-index: 2;
+            
+ 
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             position: absolute;
+ 
+ 
+         }
+ 
+         .slick-slide {
+             transform: scale(0.8);
+             color: #0c0000;
+             transition: all 0, 4s ease-in-out;
+             padding: 40px 0;
+ 
+         }
+ 
+         .slick-slide img {
+             max-width: 100%;
+             transition: all 0.4s ease-in-out;
+         }
+ 
+         .slick-center {
+             transform: scale(1.05);
+ 
+         }
+ 
+         .slick-slider>div {
+             padding: 5px;
+         }
+ 
+         body {
+             font-family: 'Press Start 2P';
+             font-size: 22px;
+             background-color: black;
+             color: white;
+             position: relative;
+         }
+ 
+         /* Add your CSS styles here */
+         .title {
+             border: 2px solid white;
+             /* You can customize the border color and thickness */
+             /* Adjust padding as needed */
+             display: flex;
+             height: 170px;
+         }
+ 
+         .body {
+             border: 2px solid white;
+             /* You can customize the border color and thickness */
+             padding: 2px;
+             /* Adjust padding as needed */
+             height: 550px;
+             overflow: hidden;
+ 
+         }
+ 
+         .body_background {
+             background: url('picture1.png')repeat-x;
+             height: 550px;
+             width: 7560px;
+             animation: slide 60s linear infinite;
+             position: relative;
+             z-index: 1;
+ 
+ 
+ 
+         }
+ 
+         .panel {
+             border: 2px solid white;
+             /*Panel buat si stats di bawah */
+             height: 230px;
+         }
+ 
+         .title_conten {
+             border: 2px solid white;
+             height: 170px;
+             width: 45vw;
+         }
+ 
+         .clock {
+             height: 170px;
+             width: 30vw;
+             border: 2px solid white;
+             text-align: center;
+ 
+ 
+         }
+ 
+ 
+ 
+         .coin {
+             height: 150px;
+             width: 450px;
+             border: 2px solid cyan;
+             text-align: center;
+ 
+         }
+ 
+         .main_frame {
+             border: cyan;
+             height: 190px;
+             padding: 15px;
+             display: flex;
+         }
+ 
+         .main_char {
+             border: white;
+             height: 170px;
+             width: 45vw;
+             padding: 5px;
+             display: flex;
+ 
+         }
+ 
+         .dice_div {
+             border: 2px cyan solid;
+             height: 160px;
+             width: 40vw;
+             display: flex;
+         }
+ 
+         .games {
+             height: 20px;
+             width: 300px;
+         }
+ 
+         #dice {
+             width: 150px;
+             height: 150px;
+             overflow: hidden;
+             cursor: pointer;
+         }
+ 
+         #dice img {
+             width: 100%;
+             height: 100%;
+ 
+             transition: transform 1.5s ease-in-out;
+         }
+ 
+         #rollButton {
+ 
+             padding: 10px;
+             font-size: 16px;
+ 
+         }
+ 
+ 
+         .Status {
+             border: 2px cyan solid;
+             height: 160px;
+             width: 25vw;
+ 
+         }
+ 
+         h1::first-letter {
+             font-size: 1.2em;
+             /* Adjust the size as needed */
+             font-weight: bold;
+             /* Optional: You can make the first letter bold or add other styles */
+         }
+ 
+         @keyframes slide {
+             0% {
+                 transform: translate3d(0, 0, 0);
+             }
+ 
+             100% {
+                 transform: translate3d(-1920px, 0, 0);
+                 /* The image width */
+             }
+         }
+ 
+         p {
+         font-size: 14px; /* You can adjust the size as needed */
+     }
+ 
+     strong {
+         font-size: 12px; /* You can adjust the size as needed */
+     }
+ 
+     span {
+         font-size: 12px; /* You can adjust the size as needed */
+     }
+     </style>
 
     <script>
 
@@ -566,28 +566,61 @@ const userData = {
 
 
 
-    function updateStats() {
-      document.getElementById('userHp').innerText = userHp;
-      document.getElementById('userAttack').innerText = userAttack;
-      document.getElementById('userDefense').innerText = userDefense;
-      document.getElementById('userAgility').innerText = userAgility;
-      document.getElementById('diceMultiplier').innerText = diceMultiplier;
+function updateStats() {
+  console.log('Updating stats...');
+  
+  const userHpElement = document.getElementById('userHp');
+  const userAttackElement = document.getElementById('userAttack');
+  const userDefenseElement = document.getElementById('userDefense');
+  const userAgilityElement = document.getElementById('userAgility');
+  const diceMultiplierElement = document.getElementById('diceMultiplier');
+  const bossHpElement = document.getElementById('bossHp');
+  const bossAttackElement = document.getElementById('bossAttack');
+  const bossDefenseElement = document.getElementById('bossDefense');
+  const bossAgilityElement = document.getElementById('bossAgility');
+  const bossDiceRollElement = document.getElementById('bossDiceRoll');
 
-      document.getElementById('bossHp').innerText = bossHp;
-      document.getElementById('bossAttack').innerText = bossAttack;
-      document.getElementById('bossDefense').innerText = bossDefense;
-      document.getElementById('bossAgility').innerText = bossAgility;
-      document.getElementById('bossDiceRoll').innerText = bossDiceRoll === 0 ? '-' : bossDiceRoll;
-    }
+  console.log('userHpElement:', userHpElement);
+  console.log('userAttackElement:', userAttackElement);
+  console.log('userDefenseElement:', userDefenseElement);
+  console.log('userAgilityElement:', userAgilityElement);
+  console.log('diceMultiplierElement:', diceMultiplierElement);
+  console.log('bossHpElement:', bossHpElement);
+  console.log('bossAttackElement:', bossAttackElement);
+  console.log('bossDefenseElement:', bossDefenseElement);
+  console.log('bossAgilityElement:', bossAgilityElement);
+  console.log('bossDiceRollElement:', bossDiceRollElement);
 
+  if (userHpElement) userHpElement.innerText = userHp;
+  else console.error('userHpElement not found!');
 
+  if (userAttackElement) userAttackElement.innerText = userAttack;
+  else console.error('userAttackElement not found!');
 
+  if (userDefenseElement) userDefenseElement.innerText = userDefense;
+  else console.error('userDefenseElement not found!');
 
+  if (userAgilityElement) userAgilityElement.innerText = userAgility;
+  else console.error('userAgilityElement not found!');
 
+  if (diceMultiplierElement) diceMultiplierElement.innerText = diceMultiplier;
+  else console.error('diceMultiplierElement not found!');
 
+  if (bossHpElement) bossHpElement.innerText = bossHp;
+  else console.error('bossHpElement not found!');
 
+  if (bossAttackElement) bossAttackElement.innerText = bossAttack;
+  else console.error('bossAttackElement not found!');
 
+  if (bossDefenseElement) bossDefenseElement.innerText = bossDefense;
+  else console.error('bossDefenseElement not found!');
 
+  if (bossAgilityElement) bossAgilityElement.innerText = bossAgility;
+  else console.error('bossAgilityElement not found!');
+
+  if (bossDiceRollElement) bossDiceRollElement.innerText = bossDiceRoll === 0 ? '-' : bossDiceRoll;
+  else console.error('bossDiceRollElement not found!');
+}
 
 
 function displayDamageAnimation(targetId, damage, callback) {
@@ -605,9 +638,6 @@ function displayDamageAnimation(targetId, damage, callback) {
     }
   });
 }
-
-
-
     function updateBattleLog(message) {
       var battleLogElement = document.getElementById('battleLog');
       var logItem = document.createElement('div');
@@ -744,13 +774,6 @@ if (userHp <= 0) {
 
 }
 
-
-
-
-
-
-
-
     function clearBattleLog() {
       document.getElementById('battleLog').innerHTML = '';
     }
@@ -800,6 +823,7 @@ function refreshStats() {
     updateUserInfoFromDatabase(username)
       .then(() => {
         // Update the UI with the latest stats
+        refreshBossStats(); // Move the call to refreshBossStats here
         updateStats();
         alert('Stats refreshed successfully!');
       })
@@ -807,7 +831,6 @@ function refreshStats() {
         console.error(error.message);
         alert('Failed to refresh stats. Please try again.');
       });
-      refreshBossStats();
   }
 }
 
@@ -825,6 +848,8 @@ function refreshBossStats() {
           bossDefense = 8 * Math.pow(2, userData.currentBossLevel - 1);
           bossAgility = 6 * Math.pow(2, userData.currentBossLevel - 1);
 
+          console.log('Boss Stats:', bossHp, bossAttack, bossDefense, bossAgility);
+
           // Update the UI with the refreshed boss stats
           updateStats();
           alert('Boss stats refreshed successfully!');
@@ -838,6 +863,8 @@ function refreshBossStats() {
       });
   }
 }
+
+
 
 
         let Dice_value = 1;
@@ -961,6 +988,7 @@ function rollDice(callback) {
                 centerPadding: "0",
             });
         });
+
     </script>
 </head>
 
@@ -1007,8 +1035,8 @@ function rollDice(callback) {
 
         </div>
     </div>
-    <div class="body">
-        <!-- <div class=" slidercontainer" >
+    <!-- <div class="body">
+        <div class=" slidercontainer" >
             <div class="slider">
                 <div class="item">
                     <img src="./Game/2.png" id="game1" onclick="openModal('game1')">
