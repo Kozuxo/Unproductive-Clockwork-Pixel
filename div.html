@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- slick link bellow-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!---->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+ .sprite_main {
+            width: 128px; /* Adjust the width and height based on your sprite size */
+            height: 128px;
+        
+            overflow: hidden;
+            bottom: 250px;
+        
+            z-index: 5;
+            position: absolute;
+            /* Adjust based on the number of frames in your sprite sheet */
+           
+        }
+        .main_characters{
+            animation: playSprite 1.2s steps(8)infinite;
+            
+        }
+
+        @keyframes playSprite {
+            from {
+                
+                transform: translate3d(0px,0,0) }
+            to { transform: translate3d(-100%,0,0)} /* Adjust based on the total width of your sprite sheet */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* Remove iframe border */
+            width: 600px;
+            height: 450px;
+            allowfullscreen: true;
+            webkitallowfullscreen:true;
+            mozallowfullscreen: true;
+            scrolling: no;
+        }
+.modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+        }
+
+        /* Styling for the modal content */
+        .modal-content {
+            background-color: #a11313be;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            height: 600px;
+            width: 950px;
+            z-index: 3;
+        }
+
+        /* Styling to close the modal */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+.slick-prev:before {
+    font-family: 'Press Start 2P';
+
+  content: "<<    ";
+  color: black;
+  font-size: 40px;
+
+}
+button.slick-prev.slick-arrow {
+    left: -75px;
+}
+.slick-next:before {
+    font-family: 'Press Start 2P';
+  content: ">>";
+  color: black;
+  font-size: 40px;
+}
+        .slick-slider {
+            margin: 0 auto;
+            width: 70%;
+            padding: 20px;
+
+        }
+
+        .slider {
+            z-index: 1;
+            position: absolute;
+          
+        }
+
+        .slidercontainer {
+            height: 400px;
+            width: 100%;
+            z-index: 2;
+           
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+
+
+        }
+
+        .slick-slide {
+            transform: scale(0.8);
+            color: #0c0000;
+            transition: all 0, 4s ease-in-out;
+            padding: 40px 0;
+
+        }
+
+        .slick-slide img {
+            max-width: 100%;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .slick-center {
+            transform: scale(1.05);
+
+        }
+
+        .slick-slider>div {
+            padding: 5px;
+        }
+
+        body {
+            font-family: 'Press Start 2P';
+            font-size: 22px;
+            background-color: black;
+            color: white;
+            position: relative;
+        }
+
+        /* Add your CSS styles here */
+        .title {
+            border: 2px solid white;
+            /* You can customize the border color and thickness */
+            /* Adjust padding as needed */
+            display: flex;
+            height: 170px;
+        }
+
+        .body {
+            border: 2px solid white;
+            /* You can customize the border color and thickness */
+            padding: 2px;
+            /* Adjust padding as needed */
+            height: 550px;
+            overflow: hidden;
+
+        }
+
+        .body_background {
+            background: url('picture1.png')repeat-x;
+            height: 550px;
+            width: 7560px;
+            animation: slide 60s linear infinite;
+            position: relative;
+            z-index: 1;
+
+
+
+        }
+
+        .panel {
+            border: 2px solid white;
+            /*Panel buat si stats di bawah */
+            height: 230px;
+        }
+
+        .title_conten {
+            border: 2px solid white;
+            height: 170px;
+            width: 45vw;
+        }
+
+        .clock {
+            height: 170px;
+            width: 30vw;
+            border: 2px solid white;
+            text-align: center;
+
+
+        }
+
+
+
+        .coin {
+            height: 150px;
+            width: 450px;
+            border: 2px solid cyan;
+            text-align: center;
+
+        }
+
+        .main_frame {
+            border: cyan;
+            height: 190px;
+            padding: 15px;
+            display: flex;
+        }
+
+        .main_char {
+            border: white;
+            height: 170px;
+            width: 45vw;
+            padding: 5px;
+            display: flex;
+
+        }
+
+        .dice_div {
+            border: 2px cyan solid;
+            height: 160px;
+            width: 40vw;
+            display: flex;
+        }
+
+        .games {
+            height: 20px;
+            width: 300px;
+        }
+
+        #dice {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        #dice img {
+            width: 100%;
+            height: 100%;
+
+            transition: transform 1.5s ease-in-out;
+        }
+
+        #rollButton {
+
+            padding: 10px;
+            font-size: 16px;
+
+        }
+
+
+        .Status {
+            border: 2px cyan solid;
+            height: 160px;
+            width: 25vw;
+
+        }
+
+        h1::first-letter {
+            font-size: 1.2em;
+            /* Adjust the size as needed */
+            font-weight: bold;
+            /* Optional: You can make the first letter bold or add other styles */
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(-1920px, 0, 0);
+                /* The image width */
+            }
+        }
+
+        p {
+        font-size: 14px; /* You can adjust the size as needed */
+    }
+
+    strong {
+        font-size: 12px; /* You can adjust the size as needed */
+    }
+
+    span {
+        font-size: 12px; /* You can adjust the size as needed */
+    }
+    </style>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
+<script src="shared.js"></script>
+
+
+    <script>
+
+let loggedInUser;
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in.
+    loggedInUser = user.email;
+    displayUserInfo();
+    initializeTimer();
+  } else {
+    // No user is signed in.
+    console.log('User is not logged in.');
+    // You can redirect to the login page if needed
+    // window.location.href = 'login.html';
+  }
+});
+
+
+    let userStatsBeforeFight = null;
+
+    // Initialize seconds for the timer and stat increment
+    let seconds = 0;
+    let statIncrementTime = 0;
+    const statIncrementInterval = 300; // 5 minutes in seconds (300 seconds)
+
+    // User stats
+    let userHp = 500;
+    let userAttack = 10;
+    let userDefense = 5;
+    let userAgility = 8;
+    let diceMultiplier = 1;
+
+    // Boss stats
+    let bossHp = 1000;
+    let bossAttack = 12;
+    let bossDefense = 8;
+    let bossAgility = 6;
+    let bossDiceRoll = 0;
+
+    // Display initial stats
+    updateStats();
+
+    function formatTime(seconds) {
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const remainingSeconds = seconds % 60;
+      return `${hours}:${minutes}:${remainingSeconds}`;
+    }
+
+    function updateTimer() {
+      seconds++;
+      document.getElementById('timer').innerText = formatTime(seconds) + ' elapsed';
+
+      // Check if 5 minutes have passed for stat increment
+      statIncrementTime++;
+      if (statIncrementTime >= statIncrementInterval) {
+        statIncrementTime = 0; // Reset the counter
+
+        // Increment user stats
+        const username = getUsername();
+        if (username) {
+          const userRef = database.ref('users/' + username.replace('.', '_'));
+          userRef.once('value')
+            .then((snapshot) => {
+              const userData = snapshot.val();
+              userData.hp++;
+              userData.attack++;
+              userData.defend++;
+              userData.agility++;
+              userRef.set(userData);
+              displayUserInfo(username);
+            })
+            .catch((error) => {
+              console.error(error.message);
+            });
+        }
+      }
+
+      // Save the time spent on the website to Firebase
+      const username = getUsername();
+      if (username) {
+        const userRef = database.ref('users/' + username.replace('.', '_'));
+        userRef.child('timeSpent').set(seconds);
+      }
+    }
+
+    function initializeTimer() {
+      const username = getUsername();
+      if (username) {
+        const userRef = database.ref('users/' + username.replace('.', '_'));
+        userRef.child('timeSpent').once('value')
+          .then((snapshot) => {
+            const storedTime = snapshot.val();
+            if (storedTime) {
+              seconds = storedTime;
+              document.getElementById('timer').innerText = formatTime(seconds) + ' elapsed';
+            }
+          })
+          .catch((error) => {
+            console.error(error.message);
+          });
+      }
+
+      setInterval(updateTimer, 1000);
+    }
+
+    function getUsername() {
+      return loggedInUser;
+    }
+
+    window.onload = initializeTimer;
+
+    function createAccount() {
+      const username = prompt('Enter your email:');
+      const password = prompt('Enter your password:');
+      if (username && password) {
+        auth.createUserWithEmailAndPassword(username, password)
+          .then(() => {
+const userData = {
+  hp: 1000,
+  attack: 10,
+  defend: 5,
+  agility: 8,
+  timeSpent: 0,
+  statIncrementTime: 0,
+  coins: 0,  // Add coins field
+  currentBossLevel: 1,  // Add current boss level field
+};
+
+            const userPath = 'users/' + username.replace('.', '_');
+            database.ref(userPath).set(userData);
+            displayUserInfo(username);
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      }
+    }
+
+    function setupBossStats(currentBossLevel) {
+  bossHp = 1000 * Math.pow(2, currentBossLevel - 1);
+  bossAttack = 12 * Math.pow(2, currentBossLevel - 1);
+  bossDefense = 8 * Math.pow(2, currentBossLevel - 1);
+  bossAgility = 6 * Math.pow(2, currentBossLevel - 1);
+  updateStats();
+}
+
+
+    function login() {
+  waitForAuthReady(() => {
+    const username = prompt('Enter your email:');
+    const password = prompt('Enter your password:');
+    if (username && password) {
+      auth.signInWithEmailAndPassword(username, password)
+        .then(() => {
+          loggedInUser = username;
+          initializeTimer();
+          displayUserInfo(username);
+          // Update user stats from Firebase on login
+          updateUserInfoFromDatabase(username).then(() => {
+            // Update the boss level display and set up boss stats
+            const userRef = database.ref('users/' + username.replace('.', '_'));
+            userRef.once('value').then((snapshot) => {
+              const userData = snapshot.val();
+              document.getElementById('bossLevel').innerText = userData.currentBossLevel;
+              setupBossStats(userData.currentBossLevel);
+            }).catch((error) => {
+              console.error(error.message);
+            });
+          }).catch((error) => {
+            console.error(error.message);
+          });
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
+  });
+}
+
+
+    function waitForAuthReady(callback) {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        unsubscribe();
+        callback();
+      });
+    }
+
+    function displayUserInfo() {
+  const userRef = database.ref('users/' + loggedInUser.replace('.', '_'));
+  userRef.once('value')
+    .then((snapshot) => {
+      const userData = snapshot.val();
+      console.log('Retrieved user data:', userData);
+
+      if (userData) {
+        // Update the UI with user information
+        const userInfo = document.getElementById('user-info');
+        userInfo.textContent = `Logged in as ${loggedInUser}.`;
+
+        // Update the user's coins count
+        const coinsCountElement = document.getElementById('coinsCount');
+        if (coinsCountElement) {
+          coinsCountElement.textContent = userData.coins;
+        }
+      } else {
+        alert('User data not found');
+      }
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+}
+
+
+
+
+    function updateUserInfoFromDatabase(username) {
+  return new Promise((resolve, reject) => {
+    const userRef = database.ref('users/' + username.replace('.', '_'));
+    userRef.once('value')
+      .then((snapshot) => {
+        const userData = snapshot.val();
+        if (userData) {
+          // Update all user stats from the database
+          userAttack = userData.attack;
+          userDefense = userData.defend;
+          userAgility = userData.agility;
+
+          // Update user health and other stats
+          userHp = userData.hp;
+          updateStats();  // Update the user stats immediately
+          resolve();  // Resolve the promise once the update is complete
+        } else {
+          reject(new Error('User data not found'));
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
+
+
+
+
+    function updateStats() {
+      document.getElementById('userHp').innerText = userHp;
+      document.getElementById('userAttack').innerText = userAttack;
+      document.getElementById('userDefense').innerText = userDefense;
+      document.getElementById('userAgility').innerText = userAgility;
+      document.getElementById('diceMultiplier').innerText = diceMultiplier;
+
+      document.getElementById('bossHp').innerText = bossHp;
+      document.getElementById('bossAttack').innerText = bossAttack;
+      document.getElementById('bossDefense').innerText = bossDefense;
+      document.getElementById('bossAgility').innerText = bossAgility;
+      document.getElementById('bossDiceRoll').innerText = bossDiceRoll === 0 ? '-' : bossDiceRoll;
+    }
+
+
+
+
+
+
+
+
+
+
+
+function displayDamageAnimation(targetId, damage, callback) {
+  var targetElement = document.getElementById(targetId);
+  var damageSpan = document.createElement('span');
+  damageSpan.classList.add('damage-animation');
+  damageSpan.textContent = `-${damage}`;
+  targetElement.appendChild(damageSpan);
+
+  damageSpan.addEventListener('animationend', function animationEndHandler() {
+    damageSpan.removeEventListener('animationend', animationEndHandler);
+    damageSpan.remove();
+    if (typeof callback === 'function') {
+      callback();
+    }
+  });
+}
+
+
+
+    function updateBattleLog(message) {
+      var battleLogElement = document.getElementById('battleLog');
+      var logItem = document.createElement('div');
+      logItem.textContent = message;
+      battleLogElement.appendChild(logItem);
+      battleLogElement.scrollTop = battleLogElement.scrollHeight;
+    }
+
+    let bossDefeated = false;
+
+function resetGame() {
+  let userData;  // Define userData in a broader scope
+
+  if (userStatsBeforeFight) {
+    // Restore user stats to the values before the fight
+    userHp = userStatsBeforeFight.hp;
+    userAttack = userStatsBeforeFight.attack;
+    userDefense = userStatsBeforeFight.defend;
+    userAgility = userStatsBeforeFight.agility;
+
+    // Update the UI with the restored stats
+    updateStats();
+  } else {
+    // If userStatsBeforeFight is not set, retrieve stats from Firebase
+    const username = getUsername();
+    if (username) {
+      updateUserInfoFromDatabase(username)
+        .then((userDataResult) => {
+          userData = userDataResult;  // Assign the result to userData
+          // Update the UI with the retrieved stats
+          updateStats();
+        })
+        .catch((error) => {
+          console.error(error.message);
+          // Handle the error appropriately, e.g., show a message to the user
+        });
+    }
+  }
+
+  // Check if the user defeated the boss
+  if (bossHp <= 0) {
+    // Reward the user with a coin and increment the boss level
+    const username = getUsername();
+    if (username) {
+      const userRef = database.ref('users/' + username.replace('.', '_'));
+      userRef.once('value')
+        .then((snapshot) => {
+          userData = snapshot.val();  // Update userData when the boss is defeated
+          userData.coins++;
+          userData.currentBossLevel++;
+          userRef.set(userData);
+
+          // Update the boss level display
+          document.getElementById('bossLevel').innerText = userData.currentBossLevel;
+
+          // Double all of the boss's stats for the next boss
+          bossHp = 1000 * Math.pow(2, userData.currentBossLevel - 1);
+          bossAttack = 12 * Math.pow(2, userData.currentBossLevel - 1);
+          bossDefense = 8 * Math.pow(2, userData.currentBossLevel - 1);
+          bossAgility = 6 * Math.pow(2, userData.currentBossLevel - 1);
+
+          // Update the UI with the reset stats
+          updateStats();
+          clearBattleLog();
+          displayUserInfo(username);
+
+          // Mark the boss as defeated
+          bossDefeated = true;
+
+          // Set up boss stats for the next level
+          setupBossStats(userData.currentBossLevel);
+        })
+        .catch((error) => {
+          console.error(error.message);
+        });
+    }
+  }
+
+// Check if the boss defeated the user
+if (userHp <= 0) {
+  // If the boss has been defeated, reset its health
+  if (bossDefeated) {
+    bossHp = 1000 * Math.pow(2, userData.currentBossLevel - 1);
+    bossAttack = 12 * Math.pow(2, userData.currentBossLevel - 1);
+    bossDefense = 8 * Math.pow(2, userData.currentBossLevel - 1);
+    bossAgility = 6 * Math.pow(2, userData.currentBossLevel - 1);
+  }
+  // Reset user's stats and other variables
+  else {
+    // Reset boss stats to their initial state
+    bossHp = 1000;
+    bossAttack = 12;
+    bossDefense = 8;
+    bossAgility = 6;
+
+    if (userStatsBeforeFight) {
+      // Restore user stats to the values before the fight
+      userHp = userStatsBeforeFight.hp;
+      userAttack = userStatsBeforeFight.attack;
+      userDefense = userStatsBeforeFight.defend;
+      userAgility = userStatsBeforeFight.agility;
+
+      // Update the UI with the restored stats
+      updateStats();
+    } else {
+      // If userStatsBeforeFight is not set, retrieve stats from Firebase
+      const username = getUsername();
+      if (username) {
+        updateUserInfoFromDatabase(username)
+          .then((userDataResult) => {
+            userData = userDataResult;  // Assign the result to userData
+            // Update the UI with the retrieved stats
+            updateStats();
+          })
+          .catch((error) => {
+            console.error(error.message);
+            // Handle the error appropriately, e.g., show a message to the user
+          });
+      }
+    }
+  }
+
+  // Reset boss stats and other variables
+  diceMultiplier = 1;
+  bossDiceRoll = 0;
+
+  // Update the UI with the reset stats
+  updateStats();
+  clearBattleLog();
+
+  // Reset userStatsBeforeFight after the fight
+  userStatsBeforeFight = null;
+}
+
+}
+
+
+
+
+
+
+
+
+    function clearBattleLog() {
+      document.getElementById('battleLog').innerHTML = '';
+    }
+
+  
+    function fightBoss() {
+  // Save the user's stats before the fight
+  userStatsBeforeFight = {
+    hp: userHp,
+    attack: userAttack,
+    defend: userDefense,
+    agility: userAgility,
+  };
+
+  // Trigger the battle
+  rollDadu();
+
+  // Check the outcome of the fight after a delay
+  setTimeout(() => {
+    // Check if the boss is defeated
+    if (bossHp <= 0) {
+      // Mark the boss as defeated and reset its health
+      bossDefeated = true;
+      bossHp = 1000 * Math.pow(2, userData.currentBossLevel - 1);
+      bossAttack = 12 * Math.pow(2, userData.currentBossLevel - 1);
+      bossDefense = 8 * Math.pow(2, userData.currentBossLevel - 1);
+      bossAgility = 6 * Math.pow(2, userData.currentBossLevel - 1);
+    } else {
+      // If the boss is not defeated, mark it as such
+      bossDefeated = false;
+    }
+
+    // Continue with any additional logic or UI updates
+    // ...
+
+    // Reset UI and stats based on the outcome
+    resetGame();
+  }, 1000); // Adjust the delay as needed
+}
+
+
+
+
+function refreshStats() {
+  const username = getUsername();
+  if (username) {
+    updateUserInfoFromDatabase(username)
+      .then(() => {
+        // Update the UI with the latest stats
+        updateStats();
+        alert('Stats refreshed successfully!');
+      })
+      .catch((error) => {
+        console.error(error.message);
+        alert('Failed to refresh stats. Please try again.');
+      });
+      refreshBossStats();
+  }
+}
+
+function refreshBossStats() {
+  const username = getUsername();
+  if (username) {
+    const userRef = database.ref('users/' + username.replace('.', '_'));
+    userRef.once('value')
+      .then((snapshot) => {
+        const userData = snapshot.val();
+        if (userData) {
+          // Update boss stats from the database
+          bossHp = 1000 * Math.pow(2, userData.currentBossLevel - 1);
+          bossAttack = 12 * Math.pow(2, userData.currentBossLevel - 1);
+          bossDefense = 8 * Math.pow(2, userData.currentBossLevel - 1);
+          bossAgility = 6 * Math.pow(2, userData.currentBossLevel - 1);
+
+          // Update the UI with the refreshed boss stats
+          updateStats();
+          alert('Boss stats refreshed successfully!');
+        } else {
+          alert('User data not found');
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+        alert('Failed to refresh boss stats. Please try again.');
+      });
+  }
+}
+
+
+        let Dice_value = 1;
+        function openModal(iframeSrc) {
+            document.getElementById('game_modal').style.display = 'flex';
+
+            document.getElementById('modalIframe').src = iframeSrc;
+        }
+
+        // Function to close a specific modal
+        function closeModal() {
+            document.getElementById('game_modal').style.display = 'none';
+            document.getElementById('modalIframe').src = '';
+        }
+
+        // Close the modal if the overlay is clicked
+        window.onclick = function (event) {
+            if (event.target.className === 'modal-overlay') {
+                event.target.style.display = 'none';
+            }
+        };
+
+        function rollDadu() {
+            rollDice((diceValue) => {
+    // Use the diceValue for your calculations and updates
+    diceMultiplier = diceValue;
+    // ... continue with your existing logic
+  });
+  var damageToBoss = (userAttack * diceMultiplier) - bossDefense;
+  bossHp -= damageToBoss > 0 ? damageToBoss : 0;
+
+  if (bossHp <= 0) {
+    alert("Congratulations! You defeated the boss!");
+    resetGame();
+  } else {
+    displayDamageAnimation('bossHp', damageToBoss);
+
+    setTimeout(() => {
+      bossDiceRoll = Math.floor(Math.random() * 20) + 1;
+      var damageToUser = (bossAttack * bossDiceRoll) - userDefense;
+      userHp -= damageToUser > 0 ? damageToUser : 0;
+
+      console.log('Boss inflicted ' + damageToUser + ' damage to the user');
+      console.log('User HP after boss attack:', userHp);
+
+      if (userHp <= 0) {
+        alert("Game Over! The boss defeated you.");
+        resetGame();
+      } else {
+        displayDamageAnimation('userHp', damageToUser);
+
+        // Delay the updateStats and updateBattleLog
+        setTimeout(() => {
+          updateStats();
+          updateBattleLog('User inflicted ' + damageToBoss + ' damage to the boss');
+        }, 1000); // Adjust the delay as needed
+      }
+    }, 1000); // Adjust the delay as needed
+  }
+}
+
+function rollDice(callback) {
+  const diceElement = document.getElementById('diceImage');
+  const valueElement = document.getElementById('diceValue');
+  const numberOfImages = 30;
+  const rollDuration = 1500; // in milliseconds
+  let currentImage = 1;
+  let interval;
+
+  // Disable button during the animation
+  document.getElementById('rollButton').disabled = true;
+
+  // Roll animation
+  interval = setInterval(() => {
+    const randomNumber = Math.floor(Math.random() * 20) + 1;
+    const imagePath = `${randomNumber}.png`;
+    diceElement.src = imagePath;
+
+    // On the last image, update the value and invoke the callback function
+    if (currentImage === numberOfImages) {
+      valueElement.textContent = `Dice Value: ${randomNumber}`;
+      document.getElementById('rollButton').disabled = false;
+      clearInterval(interval);
+
+      // Invoke the callback function with the final dice value
+      callback(randomNumber);
+    }
+
+    currentImage++;
+  }, rollDuration / numberOfImages);
+}
+
+        // Function to format seconds into HH:MM:SS
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const remainingSeconds = seconds % 60;
+            return `${hours}:${minutes}:${remainingSeconds}`;
+        }
+
+        // Function to update the timer every second
+        function updateTimer() {
+            seconds++;
+            document.getElementById('timer').innerText = formatTime(seconds) + ' elapsed';
+        }
+
+     
+
+        // Update the timer every second
+        setInterval(updateTimer, 1000);
+
+        //slicker
+        $(document).ready(function () {
+            $(".slider").slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                speed: 500,
+                infinite: true,
+                centerMode: true,
+                centerPadding: "0",
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="modal-overlay" id="game1">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('game1')">&times;</span>
+            <img src="1.png" alt="Image 1">
+            <p>Modal content for Image 1.</p>
+        </div>
+    </div>
+    <div class="title">
+
+        <div class="clock">
+           
+
+            <h2>Count Up Timer</h2>
+  <p>Time spent on the website:</p>
+  <div id="timer">0 seconds</div>
+        </div>
+        <div class="title_conten">
+
+            <h1>Unproductive</h1>
+            <h1>Clockwork Pixel</h1>
+        </div>
+        <div class="coin">
+            <div>
+                <div style="height: 60px; border: #c00909   solid; text-align: center;">
+                    <!-- Add this line to display the user's coins -->
+                    <p id="userCoins"><strong>Coins:</strong> <span id="coinsCount">0</span></p>
+
+</div>
+<div id="user-info"></div>
+                </div>
+
+                <!-- <div style="height: 80px; border: #c00909   solid; display: flex; justify-content: center; ">
+                    <p style="border: 5 px cyan solid;">gambar</p>
+                    <p>x2</p> -->
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="body">
+        <!-- <div class=" slidercontainer" >
+            <div class="slider">
+                <div class="item">
+                    <img src="./Game/2.png" id="game1" onclick="openModal('game1')">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+                <div class="item">
+                    <img src="./Game/2.png" alt="game">
+                </div>
+            </div>
+        </div> -->
+        <div class="sprite_main">
+            <img class='main_characters' src="./craftpix-net-620836-free-fantasy-chibi-male-sprites-pixel-art/Swordsman/Walk.png" alt="char">
+        </div>
+        <div class="body_background"></div>
+
+
+    </div>
+    <div class="panel">
+        <div class="main_frame">
+            <div class="main_char">
+                <div style="height: 160px; width: 200px;border: #c00909 solid;">
+
+                    gamba profile hero
+
+                </div>
+                <div class="Status">
+                    <div id="userStats">
+                        User Stats
+                        <p><strong>HP:</strong> <span id="userHp">100</span></p>
+                        <p><strong>Attack:</strong> <span id="userAttack">10</span></p>
+                        <p><strong>Defense:</strong> <span id="userDefense">5</span></p>
+                        <p><strong>Agility:</strong> <span id="userAgility">8</span></p>
+                        
+                        <button onclick="rollDadu()">Roll Dice</button>
+                      </div>
+                </div>
+
+            </div>
+            <div class="dice_div">
+                <div id="dice">
+                    <img id="diceImage" src="1.png" alt="Dice">
+                </div>
+                <div>
+                    <div>
+                        <h5 id="diceValue">Dice Value: 1</h5>
+                    </div>
+                    <div style="  border: #c00909 2px solid; display: flex; align-items: center;
+justify-content: center;">
+                        <button id="rollButton" onclick="rollDadu()">Roll Random</button>
+                        <button onclick="refreshStats()">Refresh Stats</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="main_char">
+                <div style="height: 160px; width: 200px;border: #c00909 solid;">
+
+                    gamba profile hero
+
+                </div>
+                <div class="Status">
+                    <div id="bossStats">
+                        Boss Stats
+                        <p><strong>HP:</strong> <span id="bossHp">100</span></p>
+                        <p><strong>Attack:</strong> <span id="bossAttack">12</span></p>
+                        <p><strong>Defense:</strong> <span id="bossDefense">8</span></p>
+                        <p><strong>Agility:</strong> <span id="bossAgility">6</span></p>
+                       
+                      </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
