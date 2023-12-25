@@ -2,456 +2,359 @@
 <html lang="en">
 
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <!-- slick link bellow-->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!---->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Game with Firebase Stats</title>
 
-.modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 3;
-        }
+  <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
 
-        /* Styling for the modal content */
-        .modal-content {
-            background-color: #a11313be;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            height: 600px;
-            width: 950px;
-            z-index: 3;
-        }
 
-        /* Styling to close the modal */
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
+  <style>
+    body {
+      font-family: 'Press Start 2P';
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
-.slick-prev:before {
-    font-family: 'Press Start 2P';
 
-  content: "<<    ";
-  color: black;
-  font-size: 40px;
+    #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%; 
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+    }
 
+    #content {
+      z-index: 1;
+      text-align: center;
+      
+    }
+
+   
+
+   button {
+    border-radius: 10px;
+   }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+      font-size: 14px;
+    }
+
+
+    .email {
+      background-color: rgba(200, 200, 200, 0.7);
+      padding: 20px;
+      color: #fff;
+      position: relative;
+      border-radius: 10px;
+    }
+
+    .box {
+  background-color: rgba(136, 136, 136, 0.7);
+  padding: 20px;
+  color: #fff;
+  position: relative;
+  align-items: center; /* Center children vertically */
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center children horizontally */
+  text-align: center; /* Align text center */
+  border-radius: 10px; /* Adjust the radius as needed */
+  margin: auto; /* Center the box itself horizontally */
+  max-width: 400px; /* Set a maximum width for better readability */
 }
-button.slick-prev.slick-arrow {
-    left: -75px;
+
+
+
+
+    h1 {
+      top: 10%;
+      font-size: 5em;
+      padding: 20px;
+      color: #fff;
+      position: relative;
+      animation: glitch 1s infinite alternate;
+      border-radius: 10px; /* Adjust the radius as needed */
+      text-shadow: 30px 30px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      line-height: -10;
+      margin: 0;
 }
-.slick-next:before {
-    font-family: 'Press Start 2P';
-  content: ">>";
-  color: black;
-  font-size: 40px;
-}
-        .slick-slider {
-            margin: 0 auto;
-            width: 70%;
-            padding: 20px;
 
-        }
+    @keyframes glitch {
+      0% {
+        transform: translate(0);
+      }
+      25% {
+        transform: translate(4px, -4px);
+      }
+      50% {
+        transform: translate(-4px, 4px);
+      }
+      75% {
+        transform: translate(2px, -2px);
+      }
+      100% {
+        transform: translate(0);
+      }
+    }
+    
+    h2 {
+      background-color: rgba(200, 200, 200, 0.7);
+      padding: 20px;
+      color: #fff;
+      position: relative;
+      border-radius: 10px;
+    }
+  </style>
+  <!-- Firebase scripts (non-module versions) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
 
-        .slider {
-            z-index: 1;
-            position: absolute;
-          
-        }
+  
 
-        .slidercontainer {
-            height: 400px;
-            width: 100%;
-            z-index: 2;
-           
+  <!-- Your Firebase config and initialization -->
+  <script>
+     const firebaseConfig = {
+      apiKey: "AIzaSyDiCHEzbfWANNoRFinVojyT8bLU3RukT7E",
+      authDomain: "unproductive-clockwork-pixel.firebaseapp.com",
+      databaseURL: "https://unproductive-clockwork-pixel-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "unproductive-clockwork-pixel",
+      storageBucket: "unproductive-clockwork-pixel.appspot.com",
+      messagingSenderId: "463047297753",
+      appId: "1:463047297753:web:ce01a3e27d83a141fb0cc8",
+      measurementId: "G-GC9VJVGVFW"
+    };
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+    let loggedInUser;
 
+      // Move waitForAuthReady function declaration here
+  function waitForAuthReady(callback) {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      unsubscribe();
+      callback();
+    });
+  }
 
-        }
+  function updateTimer() {
+      seconds++;
+      document.getElementById('timer').innerText = formatTime(seconds) + ' elapsed';
 
-        .slick-slide {
-            transform: scale(0.8);
-            color: #0c0000;
-            transition: all 0, 4s ease-in-out;
-            padding: 40px 0;
+      // Check if 5 minutes have passed for stat increment
+      statIncrementTime++;
+      if (statIncrementTime >= statIncrementInterval) {
+        statIncrementTime = 0; // Reset the counter
 
-        }
-
-        .slick-slide img {
-            max-width: 100%;
-            transition: all 0.4s ease-in-out;
-        }
-
-        .slick-center {
-            transform: scale(1.05);
-
-        }
-
-        .slick-slider>div {
-            padding: 5px;
-        }
-
-        body {
-            font-family: 'Press Start 2P';
-            font-size: 22px;
-            background-color: black;
-            color: white;
-            position: relative;
-        }
-
-        /* Add your CSS styles here */
-        .title {
-            border: 2px solid white;
-            /* You can customize the border color and thickness */
-            /* Adjust padding as needed */
-            display: flex;
-            height: 170px;
-        }
-
-        .body {
-            border: 2px solid white;
-            /* You can customize the border color and thickness */
-            padding: 2px;
-            /* Adjust padding as needed */
-            height: 550px;
-            overflow: hidden;
-
-        }
-
-        .body_background {
-            background: url('picture1.png')repeat-x;
-            height: 550px;
-            width: 7560px;
-            animation: slide 60s linear infinite;
-            position: relative;
-            z-index: 1;
-
-
-
-        }
-
-        .panel {
-            border: 2px solid white;
-            /*Panel buat si stats di bawah */
-            height: 230px;
-        }
-
-        .title_conten {
-            border: 2px solid white;
-            height: 170px;
-            width: 45vw;
-        }
-
-        .clock {
-            height: 170px;
-            width: 30vw;
-            border: 2px solid white;
-
-
-        }
-
-        .coin {
-            height: 150px;
-            width: 450px;
-            border: 2px solid cyan;
-
-        }
-
-        .main_frame {
-            border: cyan;
-            height: 190px;
-            padding: 15px;
-            display: flex;
-        }
-
-        .main_char {
-            border: white;
-            height: 170px;
-            width: 45vw;
-            padding: 5px;
-            display: flex;
-
-        }
-
-        .dice_div {
-            border: 2px cyan solid;
-            height: 160px;
-            width: 40vw;
-            display: flex;
-        }
-
-        .games {
-            height: 20px;
-            width: 300px;
-        }
-
-        #dice {
-            width: 150px;
-            height: 150px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        #dice img {
-            width: 100%;
-            height: 100%;
-
-            transition: transform 1.5s ease-in-out;
-        }
-
-        #rollButton {
-
-            padding: 10px;
-            font-size: 16px;
-
-        }
-
-
-        .Status {
-            border: 2px cyan solid;
-            height: 160px;
-            width: 25vw;
-
-        }
-
-        h1::first-letter {
-            font-size: 1.2em;
-            /* Adjust the size as needed */
-            font-weight: bold;
-            /* Optional: You can make the first letter bold or add other styles */
-        }
-
-        @keyframes slide {
-            0% {
-                transform: translate3d(0, 0, 0);
-            }
-
-            100% {
-                transform: translate3d(-1920px, 0, 0);
-                /* The image width */
-            }
-        }
-    </style>
-    <script>
-        let Dice_value = 1;
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
-
-        // Function to close a specific modal
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Close the modal if the overlay is clicked
-        window.onclick = function (event) {
-            if (event.target.className === 'modal-overlay') {
-                event.target.style.display = 'none';
-            }
-        };
-
-        function rollDice() {
-            const diceElement = document.getElementById('diceImage');
-            const valueElement = document.getElementById('diceValue');
-            const numberOfImages = 30;
-            const rollDuration = 1500; // in milliseconds
-            let currentImage = 1;
-            let interval;
-
-            // Disable button during the animation
-            document.getElementById('rollButton').disabled = true;
-
-            // Roll animation
-            interval = setInterval(() => {
-                const randomNumber = Math.floor(Math.random() * 20) + 1;
-                const imagePath = `${randomNumber}.png`;
-                diceElement.src = imagePath;
-                Dice_value = randomNumber;
-
-                // On the last image, update the value and clear the interval
-                if (currentImage === numberOfImages) {
-                    valueElement.textContent = `Dice Value: ${Dice_value}`;
-                    document.getElementById('rollButton').disabled = false;
-                    clearInterval(interval);
-                }
-
-                currentImage++;
-            }, rollDuration / numberOfImages);
-        }
-        // Function to format seconds into HH:MM:SS
-        function formatTime(seconds) {
-            const hours = Math.floor(seconds / 3600);
-            const minutes = Math.floor((seconds % 3600) / 60);
-            const remainingSeconds = seconds % 60;
-            return `${hours}:${minutes}:${remainingSeconds}`;
-        }
-
-        // Function to update the timer every second
-        function updateTimer() {
-            seconds++;
-            document.getElementById('timer').innerText = formatTime(seconds) + ' elapsed';
-        }
-
-        // Initialize seconds
-        let seconds = 0;
-
-        // Update the timer every second
-        setInterval(updateTimer, 1000);
-
-        //slicker
-        $(document).ready(function () {
-            $(".slider").slick({
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                speed: 500,
-                infinite: true,
-                centerMode: true,
-                centerPadding: "0",
+        // Increment user stats
+        const username = getUsername();
+        if (username) {
+          const userRef = database.ref('users/' + username.replace('.', '_'));
+          userRef.once('value')
+            .then((snapshot) => {
+              const userData = snapshot.val();
+              userData.hp++;
+              userData.attack++;
+              userData.defend++;
+              userData.agility++;
+              userRef.set(userData);
+              displayUserInfo(username);
+            })
+            .catch((error) => {
+              console.error(error.message);
             });
-        });
-    </script>
+        }
+      }
+
+      // Save the time spent on the website to Firebase
+      const username = getUsername();
+      if (username) {
+        const userRef = database.ref('users/' + username.replace('.', '_'));
+        userRef.child('timeSpent').set(seconds);
+      }
+    }
+
+  function getUsername() {
+      return loggedInUser;
+    }
+
+  function initializeTimer() {
+      const username = getUsername();
+      if (username) {
+        const userRef = database.ref('users/' + username.replace('.', '_'));
+        userRef.child('timeSpent').once('value')
+          .then((snapshot) => {
+            const storedTime = snapshot.val();
+            if (storedTime) {
+              seconds = storedTime;
+              document.getElementById('timer').innerText = formatTime(seconds) + ' elapsed';
+            }
+          })
+          .catch((error) => {
+            console.error(error.message);
+          });
+      }
+
+      setInterval(updateTimer, 1000);
+    }
+
+    function createAccount() {
+      const username = prompt('Enter your email:');
+      const password = prompt('Enter your password:');
+      if (username && password) {
+        auth.createUserWithEmailAndPassword(username, password)
+          .then(() => {
+const userData = {
+  hp: 1000,
+  attack: 10,
+  defend: 5,
+  agility: 8,
+  timeSpent: 0,
+  statIncrementTime: 0,
+  coins: 0,  // Add coins field
+  currentBossLevel: 1,  // Add current boss level field
+};
+
+            const userPath = 'users/' + username.replace('.', '_');
+            database.ref(userPath).set(userData);
+            displayUserInfo(username);
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      }
+    }
+
+    function setupBossStats(currentBossLevel) {
+  bossHp = 1000 * Math.pow(2, currentBossLevel - 1);
+  bossAttack = 12 * Math.pow(2, currentBossLevel - 1);
+  bossDefense = 8 * Math.pow(2, currentBossLevel - 1);
+  bossAgility = 6 * Math.pow(2, currentBossLevel - 1);
+  updateStats();
+}
+
+function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (email && password) {
+        auth.signInWithEmailAndPassword(email, password)
+          .then(() => {
+            loggedInUser = email; // Set loggedInUser
+            initializeTimer();
+            displayUserInfo();
+            window.location.href = 'div.html'; // Redirect after successful login
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      }
+    }
+
+
+function displayUserInfo() {
+  const userRef = database.ref('users/' + loggedInUser.replace('.', '_'));
+  console.log("Display user info function");
+  userRef.once('value')
+    .then((snapshot) => {
+      const userData = snapshot.val();
+      console.log('Retrieved user data:', userData);
+
+      if (userData) {
+        // Update the UI with user information
+        const userInfo = document.getElementById('user-info');
+        userInfo.textContent = `Logged in as ${loggedInUser}. Stats: HP(${userData.hp}), Attack(${userData.attack}), Defend(${userData.defend}), Agility(${userData.agility})`;
+
+        // Update the user's coins count
+        const coinsCountElement = document.getElementById('coinsCount');
+        if (coinsCountElement) {
+          coinsCountElement.textContent = userData.coins;
+        }
+      } else {
+        alert('User data not found');
+      }
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+}
+
+
+function updateUserInfoFromDatabase(username) {
+  return new Promise((resolve, reject) => {
+    const userRef = database.ref('users/' + username.replace('.', '_'));
+    userRef.once('value')
+      .then((snapshot) => {
+        const userData = snapshot.val();
+        if (userData) {
+          // Update all user stats from the database
+          userAttack = userData.attack;
+          userDefense = userData.defend;
+          userAgility = userData.agility;
+
+          // Update user health and other stats
+          userHp = userData.hp;
+          updateStats();  // Update the user stats immediately
+          resolve();  // Resolve the promise once the update is complete
+        } else {
+          reject(new Error('User data not found'));
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
+  </script>
 </head>
 
 <body>
-    <div class="modal-overlay" id="game1">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('game1')">&times;</span>
-            <img src="1.png" alt="Image 1">
-            <p>Modal content for Image 1.</p>
-        </div>
-    </div>
-    <div class="title">
 
-        <div class="clock">
+  <video id="video-background" autoplay muted loop>
+    <!-- Add your video source here -->
+    <source src="8bitcity.mp4" type="video/mp4">
+    
+  </video>
+  <h1>Unproductive</h1>
+  <h1>Clockwork Pixel</h1>
+  <div class = "box">
+  
+  <div class="email">
+  <label for="email">Email:</label>
+  <input type="email" id="email" placeholder="Enter your email">
+ 
 
-            <p style="text-align: center; object-fit: fill; width: max-content; font-size: smaller;">Time spent on the
-                website:</p>
-            <div id="timer" style="text-align: center;">0 seconds</div>
-        </div>
-        <div class="title_conten">
+  
+  <label for="password">Password:</label>
 
-            <h1>Unproductive</h1>
-            <h1>Clockwork Pixel</h1>
-        </div>
-        <div class="coin">
-            <div>
-                <div style="height: 60px; border: #c00909   solid;">
-                    <p style="text-align: center;">NonsenCents: </p>
-                </div>
+  <input type="password" id="password" placeholder="Enter your password">
+  </div>
 
-                <div style="height: 80px; border: #c00909   solid; display: flex; justify-content: center; ">
-                    <p style="border: 5 px cyan solid;">gambar</p>
-                    <p>x2</p>
+  <button onclick="login()">
+    <img src="8bitprops_login.jpg" alt="Login">
+  </button>
 
-
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="body">
-        <div class=" slidercontainer" >
-            <div class="slider">
-                <div class="item">
-                    <img src="./Game/2.png" id="game1" onclick="openModal('game1')">
-                </div>
-                <div class="item">
-                    <img src="./Game/2.png" alt="game">
-                </div>
-                <div class="item">
-                    <img src="./Game/2.png" alt="game">
-                </div>
-                <div class="item">
-                    <img src="./Game/2.png" alt="game">
-                </div>
-                <div class="item">
-                    <img src="./Game/2.png" alt="game">
-                </div>
-                <div class="item">
-                    <img src="./Game/2.png" alt="game">
-                </div>
-            </div>
-        </div>
-        <div class="body_background"></div>
-
-
-    </div>
-    <div class="panel">
-        <div class="main_frame">
-            <div class="main_char">
-                <div style="height: 160px; width: 200px;border: #c00909 solid;">
-
-                    gamba profile hero
-
-                </div>
-                <div class="Status">
-                    status
-                </div>
-
-            </div>
-            <div class="dice_div">
-                <div id="dice">
-                    <img id="diceImage" src="1.png" alt="Dice">
-                </div>
-                <div>
-                    <div>
-                        <h5 id="diceValue">Dice Value: 1</h5>
-                    </div>
-                    <div style="  border: #c00909 2px solid; display: flex; align-items: center;
-justify-content: center;">
-                        <button id="rollButton" onclick="rollDice()">Roll Random</button>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="main_char">
-                <div style="height: 160px; width: 200px;border: #c00909 solid;">
-
-                    gamba profile hero
-
-                </div>
-                <div class="Status">
-                    status
-                </div>
-
-            </div>
-        </div>
-
-
-    </div>
-
+  <h2>Don't have an account?</h2>
+  <button onclick="createAccount()">
+    <img src="8bitprops_signup.jpg" alt="Create Account">
+  </button>
+  </div>
+  
 </body>
 
 </html>
